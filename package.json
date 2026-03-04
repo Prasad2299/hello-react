@@ -1,0 +1,30 @@
+{
+  "name": "hello-react",
+  "version": "1.0.0",
+  "description": "Hello React App",
+  "keywords": [],
+  "homepage": "https://github.com/Prasad2299/hello-react#readme",
+  "bugs": {
+    "url": "https://github.com/Prasad2299/hello-react/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prasad2299/hello-react.git"
+  },
+  "license": "ISC",
+  "author": "Prasad Ramphale",
+  "type": "commonjs",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "browserslist":[
+    "last 2 versions"
+  ]
+}
