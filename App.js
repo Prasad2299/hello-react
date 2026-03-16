@@ -5,7 +5,9 @@ const Title = () => {
   return <>TITLE</>
 }
 
-const name = <h1>PRASAD</h1>
+const name =(<h1> 
+  PRASAD
+</h1>)
 
 const Heading = () =>{
   return <>
