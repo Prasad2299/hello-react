@@ -9,6 +9,7 @@ const name = <h1>PRASAD</h1>
 
 const Heading = () =>{
   return <>
+      {Title()}
       <Title/>
       <h1>NAME : </h1>  {name}
       <h1>HEADING</h1>
