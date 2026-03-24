@@ -9,7 +9,6 @@
 }
 
 .nav-items{
-  border: 2px solid black;
 }
 .nav-items > ul{
   display: flex;
@@ -20,4 +19,30 @@
 .nav-items > ul > li{
   padding: 10px;
   margin: 10px;
+}
+
+.res-container{
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.res-card{
+  width: 200px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.res-card > img{
+  width: 200px;
+  height: 100px;
+}
+
+.res-card:hover{
+  border: 2px solid black;
+}
+
+.search{
+  font-size: 20px;
+  padding: 5px;
 }
