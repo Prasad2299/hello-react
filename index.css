@@ -1,3 +1,23 @@
-#heading{
-  color: rgb(255, 234, 0);
+.header{
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+}
+
+.logo{
+  width: 100px;
+}
+
+.nav-items{
+  border: 2px solid black;
+}
+.nav-items > ul{
+  display: flex;
+  list-style-type: none;
+  font-size: 20px;
+}
+
+.nav-items > ul > li{
+  padding: 10px;
+  margin: 10px;
 }
