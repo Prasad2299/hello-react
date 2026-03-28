@@ -5,12 +5,13 @@ import ShimmerUi from "./ShimmerUi";
 
 const Body = () => {
   const [listOfRest, setListOfRest] = useState([]);
-  const [searchText,setSearchText] = useState("")
+  const [searchText, setSearchText] = useState("");
+  const [filterListOfRest, setFilterListOfRest] = useState([]);
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log("body component rendering")
+  console.log("body component rendering");
 
   const fetchData = async () => {
     //fetch real api
@@ -20,6 +21,7 @@ const Body = () => {
     // setListOfRest(json?.data)
     setTimeout(() => {
       setListOfRest(resList);
+      setFilterListOfRest(resList);
     }, 2000);
   };
 
@@ -34,12 +36,26 @@ const Body = () => {
   ) : (
     <div className="body">
       <div className="filter">
-        <input type="text" className="search-bar" value={searchText} onChange={(e)=> {setSearchText(e.target.value);console.log(searchText)}}></input>
-        <button onClick={()=>{
-          const filterRest = listOfRest.filter((rest) => rest.resName.toLowerCase().includes(searchText.toLowerCase()))
-          console.log(filterRest)
-          setListOfRest(filterRest)
-        }}>SEARCH</button>
+        <input
+          type="text"
+          className="search-bar"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+            console.log(searchText);
+          }}
+        ></input>
+        <button
+          onClick={() => {
+            const filterRest = listOfRest.filter((rest) =>
+              rest.resName.toLowerCase().includes(searchText.toLowerCase()),
+            );
+            console.log(filterRest);
+            setFilterListOfRest(filterRest)
+          }}
+        >
+          SEARCH
+        </button>
         <div className="search">
           <button
             onClick={() => {
@@ -47,7 +63,7 @@ const Body = () => {
                 (rest) => rest.rating > 4,
               );
               console.log("filterListOfRest", filterListOfRest);
-              setListOfRest(filterListOfRest);
+              setFilterListOfRest(filterListOfRest);
             }}
           >
             TOP RATING HOTEL
@@ -56,7 +72,7 @@ const Body = () => {
       </div>
 
       <div className="res-container">
-        {listOfRest.map((rest, i) => (
+        {filterListOfRest.map((rest, i) => (
           <RestaurantCard key={i} resObj={rest} />
         ))}
       </div>
