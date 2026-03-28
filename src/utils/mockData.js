@@ -8,7 +8,7 @@
     {
       resName: "KFC Foods",
       cuisine: ["Biryani", "North-Indian", "Asian"],
-      rating: 4.4,
+      rating: 3.8,
       time: 38,
     },
   ];
