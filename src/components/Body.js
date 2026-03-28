@@ -20,11 +20,13 @@ const Body = () => {
     },2000)
   }
 
-  if(listOfRest.length === 0){
-    console.log("shimer")
-    return <ShimmerUi></ShimmerUi>
-  }
-  return (
+  //conditional rendering
+
+  // if(listOfRest.length === 0){
+  //   console.log("shimer")
+  //   return <ShimmerUi></ShimmerUi>
+  // }
+  return listOfRest.length === 0 ? <ShimmerUi/> : (
     <div className="body">
       <div className="search">
         <button onClick={() => {
