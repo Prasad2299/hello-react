@@ -46,3 +46,14 @@
   font-size: 20px;
   padding: 5px;
 }
+
+.shim-container{
+  display: flex;
+}
+
+.shim-card{
+  margin: 10px;
+  width: 200px;
+  height: 400px;
+  background-color: #f0f0f0;
+}

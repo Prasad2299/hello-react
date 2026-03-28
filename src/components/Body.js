@@ -1,9 +1,29 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ShimmerUi from "./ShimmerUi";
 
 const Body = () => {
-  const [listOfRest,setListOfRest] = useState(resList)
+  const [listOfRest,setListOfRest] = useState([])
+  useEffect(()=>{
+    fetchData()
+  },[])
+
+  const fetchData = async() =>{
+    //fetch real api
+    // const data = await fetch("https://foodbukka.herokuapp.com/api/v1/menu");
+    // console.log("data",data)
+    // const json = await data.json()
+    // setListOfRest(json?.data)
+    setTimeout(()=>{
+      setListOfRest(resList)
+    },2000)
+  }
+
+  if(listOfRest.length === 0){
+    console.log("shimer")
+    return <ShimmerUi></ShimmerUi>
+  }
   return (
     <div className="body">
       <div className="search">
