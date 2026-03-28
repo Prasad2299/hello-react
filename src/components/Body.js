@@ -4,21 +4,24 @@ import { useEffect, useState } from "react";
 import ShimmerUi from "./ShimmerUi";
 
 const Body = () => {
-  const [listOfRest,setListOfRest] = useState([])
-  useEffect(()=>{
-    fetchData()
-  },[])
+  const [listOfRest, setListOfRest] = useState([]);
+  const [searchText,setSearchText] = useState("")
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  const fetchData = async() =>{
+  console.log("body component rendering")
+
+  const fetchData = async () => {
     //fetch real api
     // const data = await fetch("https://foodbukka.herokuapp.com/api/v1/menu");
     // console.log("data",data)
     // const json = await data.json()
     // setListOfRest(json?.data)
-    setTimeout(()=>{
-      setListOfRest(resList)
-    },2000)
-  }
+    setTimeout(() => {
+      setListOfRest(resList);
+    }, 2000);
+  };
 
   //conditional rendering
 
@@ -26,22 +29,36 @@ const Body = () => {
   //   console.log("shimer")
   //   return <ShimmerUi></ShimmerUi>
   // }
-  return listOfRest.length === 0 ? <ShimmerUi/> : (
+  return listOfRest.length === 0 ? (
+    <ShimmerUi />
+  ) : (
     <div className="body">
-      <div className="search">
-        <button onClick={() => {
-          const filterListOfRest = listOfRest.filter((rest)=> rest.rating > 4)
-          console.log("filterListOfRest",filterListOfRest)
-          setListOfRest(filterListOfRest)
-        }}>CLICK TO GET MOST RATING HOTEL</button>
+      <div className="filter">
+        <input type="text" className="search-bar" value={searchText} onChange={(e)=> {setSearchText(e.target.value);console.log(searchText)}}></input>
+        <button onClick={()=>{
+          const filterRest = listOfRest.filter((rest) => rest.resName.toLowerCase().includes(searchText.toLowerCase()))
+          console.log(filterRest)
+          setListOfRest(filterRest)
+        }}>SEARCH</button>
+        <div className="search">
+          <button
+            onClick={() => {
+              const filterListOfRest = listOfRest.filter(
+                (rest) => rest.rating > 4,
+              );
+              console.log("filterListOfRest", filterListOfRest);
+              setListOfRest(filterListOfRest);
+            }}
+          >
+            TOP RATING HOTEL
+          </button>
+        </div>
       </div>
-      <div className="res-container">
-        {
-          listOfRest.map((rest,i) => 
-            <RestaurantCard key={i} resObj = {rest} />
-          )
-        }
 
+      <div className="res-container">
+        {listOfRest.map((rest, i) => (
+          <RestaurantCard key={i} resObj={rest} />
+        ))}
       </div>
     </div>
   );

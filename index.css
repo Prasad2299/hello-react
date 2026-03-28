@@ -61,3 +61,8 @@
   margin : 0 10px;
   width: 100px;
 }
+
+.filter{
+  display: flex;
+  margin: 10px 20px;
+}
