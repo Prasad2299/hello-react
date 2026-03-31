@@ -17,6 +17,12 @@ class UserClass extends React.Component{
       <h1>Name :{name}</h1>
       <h2>Location :{location}</h2>
       <h4>Count class : {count}</h4>
+      <button onClick={() => {
+        this.setState({
+          // count:count + 1,
+          count:this.state.count + 1
+        })
+      }}>Count inc</button>
       <h4>Count2 class : {count2}</h4>
     </div>
   }
