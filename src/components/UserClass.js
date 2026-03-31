@@ -7,21 +7,30 @@ class UserClass extends React.Component {
     this.state = {
       count: 10,
       count2: 20,
+      userInfo:{
+        name:"dummy",
+        location:"dummy"
+      }
     };
     console.log("Child constructor is called!");
   }
-  componentDidMount() {
+ async componentDidMount() {
     // API IS CALLED INSDIE IT LIKE USEeffect hook in functional componnet
-    console.log("Child mouted on webpage! ");
+    const data = await fetch("https://api.github.com/users/Prasad2299");
+    const json = await data.json()
+    this.setState({
+      userInfo:json
+    })
+    console.log("Child mouted on webpage! ",this.setState.userInfo);
   }
   render() {
     const { name, location } = this.props;
-    const { count, count2 } = this.state;
+    const { count, count2 ,userInfo} = this.state;
     console.log("Child render is called!");
     return (
       <div className="user-card">
-        <h1>Name :{name}</h1>
-        <h2>Location :{location}</h2>
+        <h1>Name :{userInfo.login}</h1>
+        <h2>Location :{userInfo.location}</h2>
         <h4>Count class : {count}</h4>
         <button
           onClick={() => {
