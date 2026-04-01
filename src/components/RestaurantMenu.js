@@ -4,7 +4,7 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
   const {resId} = useParams();
-  const {restInfo} = useRestaurantMenu(resId)
+  const restInfo = useRestaurantMenu(resId)
   if(restInfo === null) {
     console.log("rest",restInfo);
     
