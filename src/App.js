@@ -19,6 +19,7 @@ const AppLayout = () => {
   );
 };
 
+//LAZY LOADING /ON DEMAND LOADING / CODE SPLITING / DYNAMIC LOADING/CHUNKING => same concept different name
 const Grocery = lazy(()=>import("./components/Grocery"));
 
 const appRouter = createBrowserRouter([
