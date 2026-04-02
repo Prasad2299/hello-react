@@ -3,7 +3,7 @@ import { CDN_URL } from "../utils/constants";
 const RestaurantCard = (props) => {
   const { resName,cuisine,rating,time } = props.resObj;
   return (
-    <div className="res-card m-4 p-4 w-[250px] rounded-lg" style={{ backgroundColor: "#f0f0f0" }}>
+    <div className="res-card m-4 p-4 w-[250px] rounded-lg hover:bg-green-200">
       <img className="rounded-lg"
         alt="res-logo"
         src={CDN_URL}
