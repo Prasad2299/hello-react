@@ -35,18 +35,18 @@ const Body = () => {
   return listOfRest.length === 0 ? (
     <ShimmerUi />
   ) : (
-    <div className="body">
-      <div className="filter">
+    <div className="body ">
+      <div className="filter m-4 flex">
         <input
           type="text"
-          className="search-bar"
+          className="border border-solid border-black mx-4 my-1"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
             console.log(searchText);
           }}
         ></input>
-        <button
+        <button className="bg-green-400 px-4 mx-4 rounded-lg"
           onClick={() => {
             const filterRest = listOfRest.filter((rest) =>
               rest.resName.toLowerCase().includes(searchText.toLowerCase()),
@@ -57,8 +57,8 @@ const Body = () => {
         >
           SEARCH
         </button>
-        <div className="search">
-          <button
+        <div className="bg-gray-300 px-4 mx-4 rounded-lg items-center">
+          <button className="p-2"
             onClick={() => {
               const filterListOfRest = listOfRest.filter(
                 (rest) => rest.rating > 4,
@@ -72,7 +72,7 @@ const Body = () => {
         </div>
       </div>
 
-      <div className="res-container">
+      <div className="res-container flex flex-wrap">
         {filterListOfRest.map((rest, i) => (
           <Link key={i} to={"/restaurant"+rest.id}><RestaurantCard  resObj={rest} /></Link>
         ))}
