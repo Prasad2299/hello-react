@@ -8,7 +8,7 @@ const Header = () => {
   const onlineStatus = useOnlineStatus()
   console.log("header component rendering")
   return (
-    <div className="header h-40 flex justify-between bg-pink-300 shadow-xl">
+    <div className="header h-40 flex justify-between bg-pink-300 shadow-xl sm:bg-blue-300">
       <div className="logo-container w-40">
         <img
           className="logo"
