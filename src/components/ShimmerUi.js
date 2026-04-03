@@ -1,10 +1,10 @@
 const ShimmerUi = () => {
   return (
-    <div className="shim-container">
-      <div className="shim-card">card</div>
-      <div className="shim-card">card</div>
-      <div className="shim-card">card</div>
-      <div className="shim-card">card</div>
+    <div className="flex border border-black bg-gray-200">
+      <div className="w-[200px] h-[300px] bg-red-300 m-4"></div>
+      <div className="w-[200px] h-[300px] bg-red-300 m-4"></div>
+      <div className="w-[200px] h-[300px] bg-red-300 m-4"></div>
+      <div className="w-[200px] h-[300px] bg-red-300 m-4"></div>
     </div>
   );
 };

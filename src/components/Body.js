@@ -1,5 +1,5 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
+import restList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import ShimmerUi from "./ShimmerUi";
 import { Link } from "react-router";
@@ -15,15 +15,20 @@ const Body = () => {
   console.log("body component rendering");
 
   const fetchData = async () => {
-    //fetch real api
-    // const data = await fetch("https://foodbukka.herokuapp.com/api/v1/menu");
+    // fetch real api
+    //swiggy api not working so we use constant data
+    // const data = await fetch("https://corsproxy.io/?url="+"https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.52&lng=73.85&page_type=DESKTOP_WEB_LISTING");
     // console.log("data",data)
     // const json = await data.json()
+    // console.log("jsondaata=>",json)
     // setListOfRest(json?.data)
     setTimeout(() => {
-      setListOfRest(resList);
-      setFilterListOfRest(resList);
+      setListOfRest(restList);
+      setFilterListOfRest(restList);
     }, 2000);
+    // console.log(restList?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    // const restData = restList?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // setListOfRest(restData)
   };
 
   //conditional rendering
@@ -35,7 +40,7 @@ const Body = () => {
   return listOfRest.length === 0 ? (
     <ShimmerUi />
   ) : (
-    <div className="body ">
+    <div className="body">
       <div className="filter m-4 flex">
         <input
           type="text"
@@ -72,7 +77,7 @@ const Body = () => {
         </div>
       </div>
 
-      <div className="res-container flex flex-wrap">
+      <div className="p-[5px] flex flex-wrap">
         {filterListOfRest.map((rest, i) => (
           <Link key={i} to={"/restaurant"+rest.id}><RestaurantCard  resObj={rest} /></Link>
         ))}
