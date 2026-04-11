@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard ,{withPromotedLable} from "./RestaurantCard";
 import restList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import ShimmerUi from "./ShimmerUi";
@@ -8,11 +8,13 @@ const Body = () => {
   const [listOfRest, setListOfRest] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterListOfRest, setFilterListOfRest] = useState([]);
+  const RestaurantCardPromoted = withPromotedLable(RestaurantCard);
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log("body component rendering");
+
 
   const fetchData = async () => {
     // fetch real api
@@ -22,9 +24,11 @@ const Body = () => {
     // const json = await data.json()
     // console.log("jsondaata=>",json)
     // setListOfRest(json?.data)
+    const newRestList = restList[0]?.card.card.gridElements.infoWithStyle.restaurants
+    console.log("body component rendering",restList[0]?.card.card.gridElements.infoWithStyle.restaurants);
     setTimeout(() => {
-      setListOfRest(restList);
-      setFilterListOfRest(restList);
+      setListOfRest(newRestList);
+      setFilterListOfRest(newRestList);
     }, 2000);
     // console.log(restList?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     // const restData = restList?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -54,7 +58,7 @@ const Body = () => {
         <button className="bg-green-400 px-4 mx-4 rounded-lg"
           onClick={() => {
             const filterRest = listOfRest.filter((rest) =>
-              rest.resName.toLowerCase().includes(searchText.toLowerCase()),
+              rest.info.name.toLowerCase().includes(searchText.toLowerCase()),
             );
             console.log(filterRest);
             setFilterListOfRest(filterRest)
@@ -66,7 +70,7 @@ const Body = () => {
           <button className="p-2"
             onClick={() => {
               const filterListOfRest = listOfRest.filter(
-                (rest) => rest.rating > 4,
+                (rest) => rest.avgRating > 4,
               );
               console.log("filterListOfRest", filterListOfRest);
               setFilterListOfRest(filterListOfRest);
@@ -79,7 +83,10 @@ const Body = () => {
 
       <div className="p-[5px] flex flex-wrap">
         {filterListOfRest.map((rest, i) => (
-          <Link key={i} to={"/restaurant"+rest.id}><RestaurantCard  resObj={rest} /></Link>
+          
+          <Link key={rest.info.id} to={"/restaurant/"+rest.info.id}>{
+            rest.promoted ? <RestaurantCardPromoted resObj={rest}/> :<RestaurantCard  resObj={rest} />
+          }</Link>
         ))}
       </div>
     </div>
