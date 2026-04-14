@@ -19,17 +19,21 @@ const Body = () => {
   const fetchData = async () => {
     // fetch real api
     //swiggy api not working so we use constant data
-    // const data = await fetch("https://corsproxy.io/?url="+"https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.52&lng=73.85&page_type=DESKTOP_WEB_LISTING");
-    // console.log("data",data)
-    // const json = await data.json()
-    // console.log("jsondaata=>",json)
-    // setListOfRest(json?.data)
-    const newRestList = restList[0]?.card.card.gridElements.infoWithStyle.restaurants
-    console.log("body component rendering",restList[0]?.card.card.gridElements.infoWithStyle.restaurants);
-    setTimeout(() => {
-      setListOfRest(newRestList);
-      setFilterListOfRest(newRestList);
-    }, 2000);
+
+    const data = await fetch("http://localhost:3000/swiggy/restaurant/lists");
+    console.log("data",data)
+    const json = await data.json()
+    console.log("jsondaata=>",json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    const restListData = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    setListOfRest(restListData)
+    setFilterListOfRest(restListData)
+    // const newRestList = restList[0]?.card.card.gridElements.infoWithStyle.restaurants
+    // console.log("body component rendering",restList[0]?.card.card.gridElements.infoWithStyle.restaurants);
+    // setTimeout(() => {
+    //   //it implement to show shimmer effect
+    //   setListOfRest(newRestList);
+    //   setFilterListOfRest(newRestList);
+    // }, 2000);
     // console.log(restList?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     // const restData = restList?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     // setListOfRest(restData)
@@ -70,7 +74,7 @@ const Body = () => {
           <button className="p-2"
             onClick={() => {
               const filterListOfRest = listOfRest.filter(
-                (rest) => rest.avgRating > 4,
+                (rest) => rest.info.avgRating > 4,
               );
               console.log("filterListOfRest", filterListOfRest);
               setFilterListOfRest(filterListOfRest);
@@ -85,7 +89,7 @@ const Body = () => {
         {filterListOfRest.map((rest, i) => (
           
           <Link key={rest.info.id} to={"/restaurant/"+rest.info.id}>{
-            rest.promoted ? <RestaurantCardPromoted resObj={rest}/> :<RestaurantCard  resObj={rest} />
+            rest?.info?.promoted ? <RestaurantCardPromoted resObj={rest}/> :<RestaurantCard  resObj={rest} />
           }</Link>
         ))}
       </div>
