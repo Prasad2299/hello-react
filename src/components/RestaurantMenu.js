@@ -5,7 +5,7 @@ import RestaurantCategory from "./RestaurantCategory";
 import { useState } from "react";
 
 const RestaurantMenu = () => {
-
+  const [showIndex,setShowIndex] = useState(0)
   const { resId } = useParams();
   const restInfo = useRestaurantMenu(resId);
   console.log("resinfo=>", restInfo?.cards[2]?.card?.card?.info?.name);
@@ -42,12 +42,13 @@ const RestaurantMenu = () => {
       </p>
 
       {/* categories accordian */}
-      {categories.map((category, i) => (
+      {categories.map((category, index) => (
         // RestaurantCategory is now controlled component before it was not
         <RestaurantCategory
           key={category?.card?.card?.title}
           data={category?.card?.card}
-          showItem = {i === 1 ? true :false}
+          showItem={index === showIndex ? true :false} 
+          setShowIndex = {()=>setShowIndex(index)}
         />
       ))}
     </div>

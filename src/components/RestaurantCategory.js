@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Item from "./Item";
 
-function RestaurantCategory({ data ,showItem }) {
+function RestaurantCategory({ data ,showItem,setShowIndex }) {
   function handleClick() {
     console.log("clicked!!");
-  
+    setShowIndex()
   }
   // console.log(data)
   return (
