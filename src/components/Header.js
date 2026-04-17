@@ -2,12 +2,12 @@ import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import userContext from "../utils/UserContext";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [btn,setBtn] = useState("login")
   const onlineStatus = useOnlineStatus()
-  const {loggedInUser} = useContext(userContext)
+  const {loggedInUser} = useContext(UserContext)
   console.log("data from context=>",loggedInUser)
 
   console.log("header component rendering")

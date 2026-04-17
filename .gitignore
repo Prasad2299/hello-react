@@ -1,3 +1,4 @@
 /node_modules
 /dist
 .parcel-cache
+# you can consume context using 2 ways 1 is using hooks and another way to UserContext.consumer.

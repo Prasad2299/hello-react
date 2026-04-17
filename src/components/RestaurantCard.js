@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { CDN_URL ,REST_IMAGE_URL} from "../utils/constants";
+import userContext from "../utils/UserContext";
 
 const RestaurantCard = (props) => {
+  const {loggedInUser} = useContext(userContext)
   console.log(props)
   const { name,cuisines,avgRating,id,cloudinaryImageId} = props.resObj.info;
   const { deliveryTime} = props.resObj.info.sla;
@@ -16,6 +19,7 @@ const RestaurantCard = (props) => {
       <h4>{cuisines.join(", ")}</h4>
       <h4>{avgRating} stars</h4>
       <h4>{deliveryTime} minutes</h4>
+      <h4>User : {loggedInUser}</h4>
     </div>
   );
 };
