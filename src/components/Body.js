@@ -1,32 +1,38 @@
-import RestaurantCard ,{withPromotedLable} from "./RestaurantCard";
+import RestaurantCard, { withPromotedLable } from "./RestaurantCard";
 import restList from "../utils/mockData";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ShimmerUi from "./ShimmerUi";
 import { Link } from "react-router";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRest, setListOfRest] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterListOfRest, setFilterListOfRest] = useState([]);
+  const {loggedInUser,setUserName} = useContext(UserContext)
   const RestaurantCardPromoted = withPromotedLable(RestaurantCard);
 
   useEffect(() => {
     fetchData();
   }, []);
 
-
-
   const fetchData = async () => {
     // fetch real api
     //swiggy api not working so we use constant data
 
     const data = await fetch("http://localhost:3000/swiggy/restaurant/lists");
-    console.log("data",data)
-    const json = await data.json()
-    console.log("jsondaata=>",json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    const restListData = json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    setListOfRest(restListData)
-    setFilterListOfRest(restListData)
+    console.log("data", data);
+    const json = await data.json();
+    console.log(
+      "jsondaata=>",
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants,
+    );
+    const restListData =
+      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants;
+    setListOfRest(restListData);
+    setFilterListOfRest(restListData);
     // const newRestList = restList[0]?.card.card.gridElements.infoWithStyle.restaurants
     // console.log("body component rendering",restList[0]?.card.card.gridElements.infoWithStyle.restaurants);
     // setTimeout(() => {
@@ -59,19 +65,21 @@ const Body = () => {
             console.log(searchText);
           }}
         ></input>
-        <button className="bg-green-400 px-4 mx-4 rounded-lg"
+        <button
+          className="bg-green-400 px-4 mx-4 rounded-lg"
           onClick={() => {
             const filterRest = listOfRest.filter((rest) =>
               rest.info.name.toLowerCase().includes(searchText.toLowerCase()),
             );
             console.log(filterRest);
-            setFilterListOfRest(filterRest)
+            setFilterListOfRest(filterRest);
           }}
         >
           SEARCH
         </button>
         <div className="bg-gray-300 px-4 mx-4 rounded-lg items-center">
-          <button className="p-2"
+          <button
+            className="p-2"
             onClick={() => {
               const filterListOfRest = listOfRest.filter(
                 (rest) => rest.info.avgRating > 4,
@@ -83,14 +91,26 @@ const Body = () => {
             TOP RATING HOTEL
           </button>
         </div>
+        <div className="search p-4 m-4 flex items-center">
+          <label>Username: </label>
+          <input
+            className="border border-black"
+            type="text"
+            value={loggedInUser}
+            onChange={(e)=>setUserName(e.target.value)}
+          ></input>
+        </div>
       </div>
 
       <div className="p-[5px] flex flex-wrap">
         {filterListOfRest.map((rest, i) => (
-          
-          <Link key={rest.info.id} to={"/restaurant/"+rest.info.id}>{
-            rest?.info?.promoted ? <RestaurantCardPromoted resObj={rest}/> :<RestaurantCard  resObj={rest} />
-          }</Link>
+          <Link key={rest.info.id} to={"/restaurant/" + rest.info.id}>
+            {rest?.info?.promoted ? (
+              <RestaurantCardPromoted resObj={rest} />
+            ) : (
+              <RestaurantCard resObj={rest} />
+            )}
+          </Link>
         ))}
       </div>
     </div>
