@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { CDN_URL ,REST_IMAGE_URL} from "../utils/constants";
-import userContext from "../utils/UserContext";
+import UserContext from "../utils/UserContext";
 
 const RestaurantCard = (props) => {
-  const {loggedInUser} = useContext(userContext)
+  const {loggedInUser} = useContext(UserContext)
   console.log(props)
   const { name,cuisines,avgRating,id,cloudinaryImageId} = props.resObj.info;
   const { deliveryTime} = props.resObj.info.sla;
