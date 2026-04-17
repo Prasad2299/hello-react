@@ -23,12 +23,15 @@ const AppLayout = () => {
   return (
     <UserContext.Provider value={{loggedInUser:userName}}>
       <div className="app">
-        <Header></Header>
+        <UserContext.Provider value={{loggedInUser:"Chairman"}}>
+          <Header></Header>
+        </UserContext.Provider>
         <Outlet />
       </div>
     </UserContext.Provider>
   );
 };
+
 
 //LAZY LOADING /ON DEMAND LOADING / CODE SPLITING / DYNAMIC LOADING/CHUNKING => same concept different name
 const Grocery = lazy(()=>import("./components/Grocery"));
