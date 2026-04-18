@@ -3,3 +3,5 @@
 .parcel-cache
 # you can consume context using 2 ways 1 is using hooks and another way to UserContext.consumer.
 # if ther are authentication api call at root level like app.js then api call inside useeffect hoook data get then send to entire application we need to wrapped our apllication under UserContext.Provider to provide value to entire application.
+
+#you can use usecontext to specific component or can be used for entire application.
