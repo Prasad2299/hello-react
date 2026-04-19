@@ -6,23 +6,23 @@ const Item = ({ item }) => {
   const dispatch = useDispatch()
   function handleAddBtn(){
     //Dispatch an action 
-    dispatch(addItem("pizza"))
+    dispatch(addItem(item))
   }
-  console.log("item=>", item);
+  console.log("item=>", item[0]);
   return (
     <div>
-      {item.map((i) => (
+      {item.map((i,index) => (
         <div
-          key={i.card.info.id}
+          key={i?.card?.info?.id || index}
           className="p-2 m-2 text-left border-gray-200 border-b-2 flex justify-between"
         >
           {/* src={CDN_URL + i.card.info.imageId} not working */}
           <div className="w-9/12">
             {" "}
             <div className="py-2">
-              <span>{i.card.info.name}</span>
-              <span> - ₹ {i.card.info.price / 100}</span>
-              <p className="text-xs">{i.card.info.description}</p>
+              <span>{i?.card?.info?.name}</span>
+              <span> - ₹ {i?.card?.info?.price / 100}</span>
+              <p className="text-xs">{i?.card?.info?.description}</p>
             </div>
           </div>
           <div className="w-3/12">
