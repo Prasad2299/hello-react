@@ -25,3 +25,9 @@ test("should load inputName of Contact Component",()=>{
   const inputName = screen.getByPlaceholderText("name")
   expect(inputName).toBeInTheDocument()
 })
+
+test("should load multiple input boxes of Contact Component",()=>{
+  render(<Contact/>)
+  const inputBoxes = screen.getAllByRole("textbox")
+  expect(inputBoxes.length).toBe(2)
+})
