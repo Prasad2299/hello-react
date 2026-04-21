@@ -5,7 +5,11 @@ import "@testing-library/jest-dom";
 describe("Test cases for Contact us component", () => {
   test("should load a contact component", () => {
     render(<Contact />);
+
+    //Querying
     const heading = screen.getByRole("heading");
+
+    //Asssertion
     expect(heading).toBeInTheDocument();
   });
 
