@@ -21,8 +21,9 @@ const Body = () => {
     //swiggy api not working so we use constant data
 
     const data = await fetch("http://localhost:3000/swiggy/restaurant/lists");
-    console.log("data", data);
+    console.log("data", typeof data);
     const json = await data.json();
+    console.log("JSON  -->",json)
     console.log(
       "jsondaata=>",
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
