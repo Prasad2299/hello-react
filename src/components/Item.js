@@ -13,6 +13,7 @@ const Item = ({ item }) => {
     <div>
       {item.map((i,index) => (
         <div
+          data-testid="foodItem"
           key={i?.card?.info?.id || index}
           className="p-2 m-2 text-left border-gray-200 border-b-2 flex justify-between"
         >
