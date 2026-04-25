@@ -56,4 +56,6 @@ it("Should render restaurant menu component", async () => {
   fireEvent.click(screen.getByRole("button",{name:"Clear Cart"}))
 
   expect(screen.getAllByTestId("foodItem").length).toBe(5)
+
+  expect(screen.getByText("Cart is empty .Please enter ...")).toBeInTheDocument()
 });
