@@ -3,6 +3,20 @@ import Contact from "../Contact";
 import "@testing-library/jest-dom";
 
 describe("Test cases for Contact us component", () => {
+
+  beforeAll(()=>{
+    console.log("it runs before all test cases")
+  })  
+  beforeEach(()=>{
+    console.log("it runs before each test case")
+  })  
+  afterAll(()=>{
+    console.log("it runs after all test cases")
+  })  
+  afterEach(()=>{
+    console.log("it runs after each test case")
+  })
+
   it("should load a contact component", () => {
     render(<Contact />);
 
