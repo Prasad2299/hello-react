@@ -19,7 +19,8 @@ function Demp() {
     }
     return true;
   }
-  // use memo hook take function which is used to be memorized changes when text state changes.
+  // use memo hook take function which is used to be memorized changes when text state changes.usememo hook increases performance of component.
+  //usecallback is another hook like usememo but in that u cached the function definition between rerenders.
   function prime(n) {
     let count = 0;
     let num = 2;
