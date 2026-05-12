@@ -20,19 +20,19 @@ function Demp() {
     return true;
   }
   // use memo hook take function which is used to be memorized changes when text state changes.
-  
-  const prime = useMemo((text) => {
+  function prime(n) {
     let count = 0;
     let num = 2;
     console.log("calculating nth prime no")
-    while (count < text) {
+    while (count < n) {
       if (isPrime(num)) {
         count++;
       }
       num++;
     }
     return num - 1;
-  },[text])
+  }
+  const primeNo = useMemo(()=> prime(text),[text])
 
   return (
     <div className={"m-4 p-4 w-96 h-96 border border-black "+(isDark && "bg-amber-800 text-white")}>
@@ -45,7 +45,7 @@ function Demp() {
         onChange={(e) => setText(e.target.value)}
       ></input>
       <div>
-        <h1>nth Prime : {prime}</h1>
+        <h1>nth Prime : {primeNo}</h1>
       </div>
       <div>
         <button className="border border-black rounded-2xl bg-amber-300 p-4 m-4" onClick={()=>setDark(!isDark)}>theme</button>
