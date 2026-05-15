@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
 import Cart from "./components/Cart";
 import Demp from "./components/Demp";
+import Demo2 from "./components/Demo2";
 // import Grocery from "./components/Grocery";
 
 const AppLayout = () => {
@@ -73,6 +74,10 @@ const appRouter = createBrowserRouter([
       {
         path:"/demo",
         element:<Demp/>
+      },
+      {
+        path:"/demo2",
+        element:<Demo2/>
       }
     ],
   },
